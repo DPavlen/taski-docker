@@ -8,6 +8,10 @@ FROM python:3.9
 WORKDIR /app
 # Дальнейшие инструкции будут выполняться в директории /app
 
+# Добавьте команду установки gunicorn в Dockerfile приложения backend; 
+# эта команда должна стоять раньше команды копирования файла requirements.txt:
+RUN pip install gunicorn==20.1.0 
+
 # Скопировать с локального компьютера файл зависимостей
 # в текущую директорию (текущая директория — это /app).
 COPY requirements.txt .
@@ -22,4 +26,6 @@ RUN pip install -r requirements.txt --no-cache-dir
 COPY . .
 
 # При старте контейнера запустить сервер разработки.
-CMD ["python", "manage.py", "runserver", "0:8000"]
+# В команде, запускающей сервер, нужно указать номер порта 
+# и приложение, которое должен обслуживать gunicorn. Измените инструкцию CMD:
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "backend.wsgi"] 
