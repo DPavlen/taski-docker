@@ -77,5 +77,5 @@ jobs:
           context: ./backend/
           push: true
  
-          tags: DPavlen/taski_backend:latest
+          tags: dpavlen/taski_backend:latest
 
