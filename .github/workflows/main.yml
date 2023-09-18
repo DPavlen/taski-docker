@@ -120,7 +120,7 @@ jobs:
         with:
           context: ./frontend/
           push: true
-          tags: dpavlen/taski_backend:latest
+          tags: dpavlen/taski_frontend:latest
 
 # Ngnix
   build_gateway_and_push_to_docker_hub:
@@ -142,7 +142,7 @@ jobs:
           context: ./gateway/
           push: true
           # Тут вместо username должен быть ваш логин на Docker Hub
-          tags: dpavlen/taski_backend:latest
+          tags: dpavlen/taski_gateway:latest
 # deploy
   deploy:
     runs-on: ubuntu-latest
